@@ -18,23 +18,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var partySizeLabel: UILabel!
     @IBOutlet weak var perPartyTotal: UILabel!
     @IBOutlet weak var partySizeControl: UIStepper!
+    let defaults = UserDefaults.standard
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         billAmountTextField.becomeFirstResponder()
+        self.title = "Tip Calculator"
+        
     }
 
 
     @IBAction func calculateLiveTip(_ sender: Any) {
         
-        
         //Get bill amount from the text field input
         let bill = Double(billAmountTextField.text!) ?? 0
 
         //Calculate tip amount and total bill
-        let tipPercentages = [0.15, 0.18, 0.2]
+        var tipPercentages = [0.15, 0.18, 0.2]
+        if (defaults.string(forKey: "tipOne") != nil){
+            tipPercentages[0] = defaults.double(forKey: "tipOne")
+        }
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
 
