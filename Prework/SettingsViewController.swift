@@ -11,12 +11,23 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var darkModeChange: UISwitch!
     @IBOutlet weak var tipOne: UITextField!
+    @IBOutlet weak var tipOneTextView: UITextField!
+    @IBOutlet weak var tipTwoTextView: UITextField!
+    @IBOutlet weak var tipThreeTextView: UITextField!
+    
     let defaults = UserDefaults.standard
+    
+    let darkOnOff = "darkOnOff"
+    let tipOneString = "tipOne"
+    let tipTwoString = "tipTwo"
+    let tipThreeString = "tipThree"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        checkSwitchState()
+        changeToDarkMode(darkModeChange)
         // Do any additional setup after loading the view.
+        setTipValues()
     }
     
 
@@ -30,28 +41,45 @@ class SettingsViewController: UIViewController {
     }
     */
     
+    func setTipValues(){
+        tipOneTextView.text = String(defaults.double(forKey: tipOneString))
+        tipTwoTextView.text = String(defaults.double(forKey: tipTwoString))
+        tipThreeTextView.text = String(defaults.double(forKey: tipThreeString))
+
+    }
+    
+    func checkSwitchState(){
+        if defaults.bool(forKey: darkOnOff) {
+            darkModeChange.setOn(true, animated: false)
+        }else{
+            darkModeChange.setOn(false, animated: false)
+        }
+    }
+    
     @IBAction func changeToDarkMode(_ sender: UISwitch) {
         
         if sender.isOn{
             
-//            view.backgroundColor = .black
-//            label.textColor = [UIColor greenColor];
-            
-            overrideUserInterfaceStyle = .dark
+            defaults.set(true, forKey: darkOnOff)
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .dark
+            }
             
             
         }else{
             
-//            view.backgroundColor = .white
-            overrideUserInterfaceStyle = .light
+            defaults.set(false, forKey: darkOnOff)
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
         }
         
     }
     
     @IBAction func storeTip1(_ sender: Any) {
         
-        let tipOneString:String = tipOne.text!
-        defaults.set(Double(tipOneString), forKey: "tipOne")
+        let tipOneValue:String = tipOne.text!
+        defaults.set(Double(tipOneValue)!/100, forKey: tipOneString)
         defaults.synchronize()
         
     }

@@ -41,7 +41,7 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" name="AccentColor"/>
                                 <connections>
-                                    <action selector="calculateLiveTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="voB-oz-tCA"/>
+                                    <action selector="calculateLiveTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="8Cz-Io-KxC"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWx-qW-goq">
@@ -97,7 +97,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="calculateLiveTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="Rh7-9L-xKR"/>
+                                    <action selector="calculateLiveTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="4ND-BX-RgK"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -215,6 +215,9 @@
                     <connections>
                         <outlet property="darkModeChange" destination="UC6-be-Ov3" id="cDt-7b-oAM"/>
                         <outlet property="tipOne" destination="2l0-ed-MNB" id="2Hw-Ue-5Me"/>
+                        <outlet property="tipOneTextView" destination="2l0-ed-MNB" id="0nh-HA-UAm"/>
+                        <outlet property="tipThreeTextView" destination="NUX-D3-g5Q" id="YdP-vc-PeX"/>
+                        <outlet property="tipTwoTextView" destination="ToK-W9-RTE" id="0Se-5p-eI3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9f-SF-SbF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

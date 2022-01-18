@@ -20,26 +20,40 @@ class ViewController: UIViewController {
     @IBOutlet weak var partySizeControl: UIStepper!
     let defaults = UserDefaults.standard
     
+    let firstLoad = "FirstLoad"
+    let tipOneString = "tipOne"
+    let tipTwoString = "tipTwo"
+    let tipThreeString = "tipThree";
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         billAmountTextField.becomeFirstResponder()
         self.title = "Tip Calculator"
+        setDefaults()
         
     }
 
+    func setDefaults(){
+        if defaults.bool(forKey: firstLoad) {
+            defaults.set(0.15, forKey: tipOneString)
+            defaults.set(0.18, forKey: tipTwoString)
+            defaults.set(0.20, forKey: tipThreeString)
+            defaults.set(false, forKey: firstLoad)        }
+    }
 
+    func calculateTipControl() -> Array<Double>{
+        return [defaults.double(forKey: tipOneString), defaults.double(forKey: tipTwoString), defaults.double(forKey: tipThreeString)]
+    }
+    
+    
     @IBAction func calculateLiveTip(_ sender: Any) {
         
         //Get bill amount from the text field input
         let bill = Double(billAmountTextField.text!) ?? 0
 
         //Calculate tip amount and total bill
-        var tipPercentages = [0.15, 0.18, 0.2]
-        if (defaults.string(forKey: "tipOne") != nil){
-            tipPercentages[0] = defaults.double(forKey: "tipOne")
-        }
+        let tipPercentages = calculateTipControl()
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
 
@@ -62,6 +76,9 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        defaults.set(true, forKey: firstLoad)
+    }
     
 }
 
