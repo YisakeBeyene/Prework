@@ -21,9 +21,10 @@ class ViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     let firstLoad = "FirstLoad"
+    let partySizeString = "partySize"
     let tipOneString = "tipOne"
     let tipTwoString = "tipTwo"
-    let tipThreeString = "tipThree";
+    let tipThreeString = "tipThree"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,11 @@ class ViewController: UIViewController {
         billAmountTextField.becomeFirstResponder()
         self.title = "Tip Calculator"
         setDefaults()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setTipValues()
+        calculateLiveTip(true)
     }
 
     func setDefaults(){
@@ -39,7 +44,15 @@ class ViewController: UIViewController {
             defaults.set(0.15, forKey: tipOneString)
             defaults.set(0.18, forKey: tipTwoString)
             defaults.set(0.20, forKey: tipThreeString)
-            defaults.set(false, forKey: firstLoad)        }
+            defaults.set(false, forKey: firstLoad)
+        }
+        setTipValues()
+    }
+    
+    func setTipValues(){
+        tipControl.setTitle(String(format:"%.0f%%", defaults.double(forKey: tipOneString)*100), forSegmentAt: 0)
+        tipControl.setTitle(String(format:"%.0f%%", defaults.double(forKey: tipTwoString)*100), forSegmentAt: 1)
+        tipControl.setTitle(String(format:"%.0f%%", defaults.double(forKey: tipThreeString)*100), forSegmentAt: 2)
     }
 
     func calculateTipControl() -> Array<Double>{
@@ -48,6 +61,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func calculateLiveTip(_ sender: Any) {
+        
+        
         
         //Get bill amount from the text field input
         let bill = Double(billAmountTextField.text!) ?? 0
@@ -71,6 +86,7 @@ class ViewController: UIViewController {
     @IBAction func changePartySizeStepper(_ sender: UIStepper) {
         
         partySizeLabel.text = String(format: "%.0f", sender.value)
+//        defaults.set(Int(partySizeLabel.text!), forKey: partySizeString) 
         
         calculateLiveTip(sender)
         
@@ -78,6 +94,7 @@ class ViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         defaults.set(true, forKey: firstLoad)
+        defaults.synchronize()
     }
     
 }

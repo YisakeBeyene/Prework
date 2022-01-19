@@ -165,7 +165,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="storeTip1:" destination="3UN-0N-1RC" eventType="editingDidEnd" id="jYI-ba-ttM"/>
+                                    <action selector="storeTip1:" destination="3UN-0N-1RC" eventType="editingDidEnd" id="Aqm-Ch-Ve5"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ToK-W9-RTE">
@@ -173,12 +173,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="storeTip2:" destination="3UN-0N-1RC" eventType="editingDidEnd" id="Aks-Nc-gjw"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NUX-D3-g5Q">
                                 <rect key="frame" x="172" y="433" width="120" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="storeTip3:" destination="3UN-0N-1RC" eventType="editingDidEnd" id="Mlk-E6-oT9"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrw-Fy-EiT">
                                 <rect key="frame" x="38" y="525.5" width="84" height="21"/>
@@ -214,7 +220,6 @@
                     <navigationItem key="navigationItem" id="Rgg-WK-V08"/>
                     <connections>
                         <outlet property="darkModeChange" destination="UC6-be-Ov3" id="cDt-7b-oAM"/>
-                        <outlet property="tipOne" destination="2l0-ed-MNB" id="2Hw-Ue-5Me"/>
                         <outlet property="tipOneTextView" destination="2l0-ed-MNB" id="0nh-HA-UAm"/>
                         <outlet property="tipThreeTextView" destination="NUX-D3-g5Q" id="YdP-vc-PeX"/>
                         <outlet property="tipTwoTextView" destination="ToK-W9-RTE" id="0Se-5p-eI3"/>

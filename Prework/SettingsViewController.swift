@@ -10,7 +10,6 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var darkModeChange: UISwitch!
-    @IBOutlet weak var tipOne: UITextField!
     @IBOutlet weak var tipOneTextView: UITextField!
     @IBOutlet weak var tipTwoTextView: UITextField!
     @IBOutlet weak var tipThreeTextView: UITextField!
@@ -42,9 +41,9 @@ class SettingsViewController: UIViewController {
     */
     
     func setTipValues(){
-        tipOneTextView.text = String(defaults.double(forKey: tipOneString))
-        tipTwoTextView.text = String(defaults.double(forKey: tipTwoString))
-        tipThreeTextView.text = String(defaults.double(forKey: tipThreeString))
+        tipOneTextView.text = String(format:"%.0f%%", defaults.double(forKey: tipOneString)*100)
+        tipTwoTextView.text = String(format:"%.0f%%", defaults.double(forKey: tipTwoString)*100)
+        tipThreeTextView.text = String(format:"%.0f%%", defaults.double(forKey: tipThreeString)*100)
 
     }
     
@@ -78,10 +77,30 @@ class SettingsViewController: UIViewController {
     
     @IBAction func storeTip1(_ sender: Any) {
         
-        let tipOneValue:String = tipOne.text!
+        let tipOneValue:Substring = tipOneTextView.text!.dropLast(1)
         defaults.set(Double(tipOneValue)!/100, forKey: tipOneString)
         defaults.synchronize()
         
+    }
+    
+    @IBAction func storeTip2(_ sender: Any) {
+        
+        let tipTwoValue:Substring = tipTwoTextView.text!.dropLast(1)
+        defaults.set(Double(tipTwoValue)!/100, forKey: tipTwoString)
+        defaults.synchronize()
+        
+    }
+    
+    @IBAction func storeTip3(_ sender: Any) {
+        
+        let tipThreeValue:Substring = tipThreeTextView.text!.dropLast(1)
+        defaults.set(Double(tipThreeValue)!/100, forKey: tipThreeString)
+        defaults.synchronize()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        defaults.synchronize()
     }
     
 }
